@@ -177,5 +177,5 @@ func deleteLocalImages(id string, basePath string) (bool, string) {
 		return false, "No matching image files found"
 	}
 
-	return true, fmt.Sprintf("Successfully deleted %d images", deletedCount)
+	return true, fmt.Sprintf("Successfully deleted image and cleaned up %d associated files", deletedCount)
 }
