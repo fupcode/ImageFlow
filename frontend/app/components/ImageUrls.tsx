@@ -48,18 +48,12 @@ export const ImageUrls = ({ image }: ImageUrlsProps) => {
   const originalUrl = getFullUrl(image.urls?.original || (isImageFile ? (image as ImageFile).url : ""));
   const webpUrl = getFullUrl(image.urls?.webp || "");
   const avifUrl = getFullUrl(image.urls?.avif || "");
+  const markdownUrl = getFullUrl(image.urls?.webp || image.urls?.original || (isImageFile ? (image as ImageFile).url : ""));
   
   // 获取当前格式
   const format = (image.format || "").toLowerCase();
   
-  const currentFormatUrl =
-    format === "webp"
-      ? webpUrl
-      : format === "avif" && avifUrl
-      ? avifUrl
-      : originalUrl;
-      
-  const markdownLink = buildMarkdownLink(currentFormatUrl!, image.filename);
+  const markdownLink = buildMarkdownLink(markdownUrl, image.filename);
 
   const CopyButton = ({ type, text }: { type: string; text: string }) => (
     <button

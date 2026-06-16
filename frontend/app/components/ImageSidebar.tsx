@@ -183,6 +183,17 @@ export default function ImageSidebar({
   const menuGroups: ContextMenuGroup[] = menuImage
     ? [
         {
+          id: "details",
+          items: [
+            {
+              id: "details",
+              label: "查看详细信息",
+              onClick: () => handleShowDetails(menuImage),
+              icon: <EyeOpenIcon className="h-4 w-4" />,
+            },
+          ],
+        },
+        {
           id: "copy",
           items: [
             {
@@ -225,17 +236,6 @@ export default function ImageSidebar({
               label: "复制HTML标签",
               onClick: () => handleCopy(menuImage, "html"),
               icon: <FileIcon className="h-4 w-4" />,
-            },
-          ],
-        },
-        {
-          id: "actions",
-          items: [
-            {
-              id: "details",
-              label: "查看详细信息",
-              onClick: () => handleShowDetails(menuImage),
-              icon: <EyeOpenIcon className="h-4 w-4" />,
             },
           ],
         },

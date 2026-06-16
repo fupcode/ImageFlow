@@ -157,6 +157,17 @@ export default function ImageCard({
   // 右键菜单项
   const menuGroups: ContextMenuGroup[] = [
     {
+      id: "details",
+      items: [
+        {
+          id: "details",
+          label: "查看详细信息",
+          onClick: onClick,
+          icon: <EyeOpenIcon className="h-4 w-4" />,
+        },
+      ],
+    },
+    {
       id: "copy",
       items: [
         {
@@ -200,12 +211,6 @@ export default function ImageCard({
     {
       id: "actions",
       items: [
-        {
-          id: "details",
-          label: "查看详细信息",
-          onClick: onClick,
-          icon: <EyeOpenIcon className="h-4 w-4" />,
-        },
         {
           id: "delete",
           label: "删除图片",
