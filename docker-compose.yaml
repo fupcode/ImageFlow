@@ -1,0 +1,35 @@
+services:
+  imageflow:
+    image: imageflow:latest
+    container_name: imageflow
+    ports:
+      - "${IMAGEFLOW_PORT:-8686}:8686"
+    volumes:
+      - ./static/images:/app/static/images
+      - ./config:/app/config
+      - ./data:/app/data
+      - .env:/app/.env
+    environment:
+      - API_KEY=${API_KEY:-default_api_key}
+      - LOCAL_STORAGE_PATH=/app/static/images
+      - CUSTOM_DOMAIN=${CUSTOM_DOMAIN:-}
+      - MAX_UPLOAD_COUNT=${MAX_UPLOAD_COUNT:-20}
+      - IMAGE_QUALITY=${IMAGE_QUALITY:-80}
+      - AVIF_ENABLED=${AVIF_ENABLED:-false}
+      - WORKER_THREADS=${WORKER_THREADS:-4}
+      - SPEED=${SPEED:-5}
+      - METADATA_SQLITE_PATH=${METADATA_SQLITE_PATH:-/app/data/metadata.db}
+      - DEBUG_MODE=${DEBUG_MODE:-false} 
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:8686/api/config || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - imageflow-network
+
+networks:
+  imageflow-network:
+    driver: bridge
