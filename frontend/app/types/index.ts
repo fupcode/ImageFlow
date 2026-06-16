@@ -5,15 +5,6 @@ export interface ApiResponse<T = any> {
   error?: string;
 }
 
-export interface PaginatedResponse<T> extends ApiResponse {
-  data?: {
-    items: T[];
-    total: number;
-    page: number;
-    pageSize: number;
-  };
-}
-
 // 图片相关类型
 export interface ImageFile {
   id: string;
@@ -46,19 +37,6 @@ export interface ImageFilterState {
   format: string;
   orientation: string;
   tag: string;
-}
-
-// 组件 Props 类型
-export interface ImageCardProps {
-  image: ImageFile;
-  onClick: () => void;
-}
-
-export interface ImageModalProps {
-  image: ImageFile | null;
-  isOpen: boolean;
-  onClose: () => void;
-  onDelete: (id: string) => Promise<void>;
 }
 
 export interface ApiKeyModalProps {

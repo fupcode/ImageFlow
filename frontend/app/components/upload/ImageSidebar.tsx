@@ -1,6 +1,7 @@
 'use client'
 
 import { FileIcon, Cross1Icon, TrashIcon, PlusIcon } from '../ui/icons'
+import { formatFileSize } from '../../utils/imageUtils'
 
 interface ImageFile {
   id: string
@@ -13,15 +14,6 @@ interface ImageSidebarProps {
   onRemoveAll: () => void
   isOpen: boolean
   onClose: () => void
-}
-
-// 将文件大小转换为可读格式
-const formatFileSize = (bytes: number): string => {
-  if (bytes === 0) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
 
 export default function ImageSidebar({ files, onRemoveFile, onRemoveAll, isOpen, onClose }: ImageSidebarProps) {

@@ -114,19 +114,6 @@ func detectBestFormat(r *http.Request, cfg *config.Config) string {
 	return FormatOriginal
 }
 
-// determineOrientation selects orientation based on device type and request parameters
-func determineOrientation(r *http.Request, deviceType string) string {
-	orientation := r.URL.Query().Get("orientation")
-	if orientation == "" {
-		if deviceType == utils.DeviceMobile {
-			return "portrait"
-		} else {
-			return "landscape"
-		}
-	}
-	return orientation
-}
-
 // getContentType returns the appropriate Content-Type based on format and filename
 func getContentType(format string, filename string) string {
 	if format == FormatAVIF {

@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { ImageFile } from "../types";
 import { ImageData } from "../types/image";
 import { buildMarkdownLink } from "../utils/imageUtils";
